@@ -8,7 +8,6 @@ import (
 	"sort"
 	"strings"
 	"testing"
-	"unicode"
 )
 
 func TestCSP(t *testing.T) {
@@ -249,26 +248,6 @@ func checkCSP(t *testing.T, m Middleware, expectedHeader string, expectedValues 
 	}
 
 	return rs
-}
-
-func equalPolicies(a, b string) bool {
-	a = removeSpaces(a)
-	b = removeSpaces(b)
-	as := strings.Split(a, ";")
-	bs := strings.Split(b, ";")
-	sort.Strings(as)
-	sort.Strings(bs)
-
-	return reflect.DeepEqual(as, bs)
-}
-
-func removeSpaces(s string) (result string) {
-	for _, r := range s {
-		if !unicode.IsSpace(r) {
-			result += string(r)
-		}
-	}
-	return result
 }
 
 func parseDirectives(s string) map[string][]string {
