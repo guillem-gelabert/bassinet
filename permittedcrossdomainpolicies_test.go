@@ -10,19 +10,19 @@ func TestPermittedCrossDomainPolicies(t *testing.T) {
 	}{
 		{desc: "with none",
 			expected: "none",
-			target:   0,
+			target:   PCDPNone,
 		},
 		{desc: "with master-only",
 			expected: "master-only",
-			target:   1,
+			target:   PCDPMasterOnly,
 		},
 		{desc: "with by-content-type",
 			expected: "by-content-type",
-			target:   2,
+			target:   PCDPByContentType,
 		},
 		{desc: "with all",
 			expected: "all",
-			target:   3,
+			target:   PCDPAll,
 		},
 	}
 

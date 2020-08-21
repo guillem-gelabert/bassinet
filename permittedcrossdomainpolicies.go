@@ -6,10 +6,10 @@ import (
 )
 
 const (
-	none = iota
-	masterOnly
-	byContentType
-	all
+	PCDPNone = iota
+	PCDPMasterOnly
+	PCDPByContentType
+	PCDPAll
 )
 
 // PermittedCrossDomainPolicies sets X-Permitted-Cross-Domain-Policies header
