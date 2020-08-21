@@ -1,3 +1,4 @@
+[![Go Report Card](https://goreportcard.com/badge/gojp/goreportcard)](https://goreportcard.com/report/github.com/guillem-gelabert/bassinet)
 # Bassinet
 
 Bassinet is a set of 11 utility middlewares to help secure HTTP headers. It's based on the widely used helmet.js. Includes middleware functions for setting the following headers:
