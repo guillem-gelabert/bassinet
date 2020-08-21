@@ -42,7 +42,7 @@ srv := http.Server{
 
 As you might probably want to chain several of the middlewares it is recommended to use a composing function.
 
-###Usage with justinas/alice
+### With justinas/alice
 
 ```
 xssFilter, err := bassinet.XSSFilter()
