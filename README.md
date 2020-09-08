@@ -3,8 +3,8 @@
 Bassinet is a set of 11 utility middlewares to help secure HTTP headers. It's based on the widely used helmet.js. Includes middleware functions for setting the following headers:
 
 - [`X-XSS-Protection`](#X-XSS-Protection)
-- `Strict-Transport-Security`
-- `Referrer-Policy`
+- [`Strict-Transport-Security`](#Strict-Transport-Security)
+- [`Referrer-Policy`](#Referrer-Policy)
 - `X-Permitted-Cross-Domain-Policies`
 - `X-Download-Options`
 - `X-Powered-By`
@@ -74,5 +74,32 @@ if err != nil {
 
 srv := http.Server{
 	Handler: xssFilter(mux)
+}
+```
+
+### Strict-Transport-Security
+
+StrictTransportSecurity sets Strict-Transport-Security so that browsers remember if HTTPS is available, to avoid insecure connection before redirect. [Read more](https://guillem-gelabert.github.io/posts/strict-transport-security/).
+
+It accepts a `bassinet.StrictTransportOptions` struct to set the following directives:
+
+- `maxAge`: Time (in seconds) that the browser should remember if the site has HTTPS. Defaults to 180 days. **int**
+- `excludeSubdomains`: Optional. If set the browser will apply directive to subdomains. **bool**
+- `preload`: Optional. If set the browser will check the [Preloading Strict Transport Security](https://hstspreload.org/) public list, enabling STS also on first load. **bool**
+
+```
+policies := bassinet.StrictTransportOptions{
+	maxAge:            60 * 60 * 24 * 7, // recheck every week
+	excludeSubdomains: true,
+	preload: true,
+}
+
+sts, err := bassinet.StrictTransportSecurity(policies)
+if err != nil {
+	// Handle error
+}
+
+srv := http.Server{
+	Handler: sts(mux)
 }
 ```
