@@ -5,7 +5,7 @@ Bassinet is a set of 11 utility middlewares to help secure HTTP headers. It's ba
 - [`X-XSS-Protection`](#X-XSS-Protection)
 - [`Strict-Transport-Security`](#Strict-Transport-Security)
 - [`Referrer-Policy`](#Referrer-Policy)
-- `X-Permitted-Cross-Domain-Policies`
+- [`X-Permitted-Cross-Domain-Policies`](#X-Permitted-Cross-Domain-Policies)
 - `X-Download-Options`
 - `X-Powered-By`
 - `X-Frame-Options`
@@ -101,5 +101,27 @@ if err != nil {
 
 srv := http.Server{
 	Handler: sts(mux)
+}
+```
+
+### X-Permitted-Cross-Domain-Policies
+
+PermittedCrossDomainPolicies sets X-Permitted-Cross-Domain-Policies header to tell some user-agents (most notably Adobe products) your domain's policy for loading cross-domain content. [Read more](https://www.adobe.com/devnet-docs/acrobatetk/tools/AppSec/xdomain.html).
+
+Accepts the following policies:
+
+- `PCDPNone`: No `crossdomain.xml` file is allowed.
+- `PCDPMasterOnly`: Only check `crossdomain.xml` in the root directory of the website.
+- `PCDPByContentType`: Only accept files with type `text/x-cross-domain-policy`.
+- `PCDPAll`: Allow any `crossdomain.xml` files.
+
+```
+permittedCrossDomainPolicies, err := bassinet.PermittedCrossDomainPolicies(bassinet.PCDPByContentType)
+if err != nil {
+	// Handle error
+}
+
+srv := http.Server{
+	Handler: permittedCrossDomainPolicies(mux)
 }
 ```
