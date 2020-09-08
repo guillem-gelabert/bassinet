@@ -2,7 +2,7 @@
 
 Bassinet is a set of 11 utility middlewares to help secure HTTP headers. It's based on the widely used helmet.js. Includes middleware functions for setting the following headers:
 
-- `X-XSS-Protection`
+- (`X-XSS-Protection`)[X-XSS-Protection]
 - `Strict-Transport-Security`
 - `Referrer-Policy`
 - `X-Permitted-Cross-Domain-Policies`
@@ -60,5 +60,19 @@ if err != nil {
 middleware := alice.New(xssFilter, htsts)
 ```
 
+### Response Headers
 
+### X-XSS-Protection
 
+`XSSFilter` sets `X-XSS-Protection` header to `0` to prevent attackers from blocking legit code or inferring information. [Read more](https://guillem-gelabert.github.io/posts/x-xss-protection/). `XSSFilter` accepts no options.
+
+```
+	xssFilter, err := bassinet.XSSFilter()
+	if err != nil {
+		// Handle error
+	}
+
+	srv := http.Server{
+		Handler: xssFilter(mux)
+	}
+```
