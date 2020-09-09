@@ -6,7 +6,7 @@ Bassinet is a set of 11 utility middlewares to help secure HTTP headers. It's ba
 - [`Strict-Transport-Security`](#Strict-Transport-Security)
 - [`Referrer-Policy`](#Referrer-Policy)
 - [`X-Permitted-Cross-Domain-Policies`](#X-Permitted-Cross-Domain-Policies)
-- `X-Download-Options`
+- [`X-Download-Options`](#X-Download-Options)
 - `X-Powered-By`
 - `X-Frame-Options`
 - `Expect-CT`
@@ -123,5 +123,17 @@ if err != nil {
 
 srv := http.Server{
 	Handler: permittedCrossDomainPolicies(mux)
+}
+```
+
+### X-Download-Options
+
+IeNoOpen sets X-Download-Options to `noopen` to prevent IE users to execute downloads in your site's context. [Read more](https://docs.microsoft.com/en-us/archive/blogs/ie/ie8-security-part-v-comprehensive-protection).
+
+```
+ieNoOpen := bassinet.IeNoOpen()
+
+srv := http.Server{
+	Handler: ieNoOpen(mux)
 }
 ```
