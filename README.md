@@ -8,12 +8,12 @@ Bassinet is a set of 11 utility middlewares to help secure HTTP headers. It's ba
 - [`Referrer-Policy`](#Referrer-Policy)
 - [`X-Permitted-Cross-Domain-Policies`](#X-Permitted-Cross-Domain-Policies)
 - [`X-Download-Options`](#X-Download-Options)
-- `X-Powered-By`
-- `X-Frame-Options`
+- [`X-Powered-By`](https://guillem-gelabert.github.io/posts/x-powered-by/)
+- [`X-Frame-Options`](https://guillem-gelabert.github.io/posts/x-frame-options/)
 - `Expect-CT`
-- `X-Content-Type-Options`
+- [`X-Content-Type-Options`](https://guillem-gelabert.github.io/posts/x-content-type-options/)
 - `X-DNS-Prefetch-Control`
-- `Content-Security-Policy`
+- [`Content-Security-Policy`](https://guillem-gelabert.github.io/posts/content-security-policy/)
 
 ## Usage
 
